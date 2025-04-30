@@ -1,0 +1,49 @@
+{
+  "name": "next-rolekit",
+  "version": "0.1.0",
+  "description": "Role & Permission guard library for Next.js 15 (App Router, Middleware, Supabase-ready)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./client": {
+      "import": "./dist/client/index.js",
+      "types": "./dist/client/index.d.ts"
+    },
+    "./server": {
+      "import": "./dist/server/index.js",
+      "types": "./dist/server/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "nextjs",
+    "role",
+    "permission",
+    "guard",
+    "middleware",
+    "supabase",
+    "nextjs15",
+    "authorization"
+  ],
+  "author": "Nuttapong Maneenate",
+  "license": "MIT",
+  "peerDependencies": {
+    "next": ">=13.4",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
