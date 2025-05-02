@@ -11,9 +11,11 @@ Supports **App Router**, **Middleware**, **Client/UI protection**, **API routes*
 - 👁️ **Client-level Permission UI**: Show/hide components based on user role/permissions
 - 🧪 **Dev Mocking via `.env.local`**: Easy mock user injection, no hardcoded values
 - 🌐 **Global Config**: Centralized access control rules
-- 🪙 **JWT / Cookie Support**: Lightweight token-based identity
+- 🍪 **JWT / Cookie Support**: Lightweight token-based identity
 - 📦 **Zero runtime dependencies**: Fast, clean, and easy to integrate
-- 🧩 **Supabase/Auth-ready**
+- 🧩~~ Supabase/Auth-ready~~ *(in progress)*
+- 🏠~~Demo Project~~ *(in progress)*
+
 
 ---
 
@@ -197,4 +199,4 @@ console.log('User Role:', user.role)
 
 ## 📜 License
 
-MIT © [Nuttapong Maneenate](https://github.com/nuttapongdev)
+MIT © [Nuttapong Maneenate](https://github.com/bombman)
