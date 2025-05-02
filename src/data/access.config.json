@@ -1,0 +1,47 @@
+[
+    {
+      "path": "/dashboard",
+      "roles": ["admin", "editor"]
+    },
+    {
+      "path": "/dashboard/settings",
+      "roles": ["admin"]
+    },
+    {
+      "path": "/dashboard/reports",
+      "roles": ["admin", "editor"],
+      "permissions": ["view-report"]
+    },
+    {
+      "path": "/dashboard/create",
+      "roles": ["editor"],
+      "permissions": ["create"]
+    },
+    {
+      "path": "/api/posts/create",
+      "roles": ["editor"],
+      "permissions": ["create"]
+    },
+    {
+      "path": "/api/posts/delete",
+      "roles": ["admin"]
+    },
+    {
+      "path": "/api/secret",
+      "permissions": ["access-secret"]
+    },
+    {
+      "path": "/admin",
+      "roles": ["admin"]
+    },
+    {
+      "path": "/editor",
+      "roles": ["editor"]
+    },
+    {
+        "path": "/api/posts/delete",
+        "roles": ["admin"],
+        "permissions": ["delete"]
+      }
+  ]
+  
