@@ -1,6 +1,6 @@
 {
   "name": "next-rolekit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Role & Permission guard library for Next.js 15 (App Router, Middleware, Supabase-ready)",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
