@@ -9,6 +9,8 @@ type Options = {
   redirectTo?: string
 }
 
+const debug = process.env.DEBUG_MODE === 'true'
+
 export function getMockUserFromEnv(): User {
   const id = process.env.DEV_MOCK_ID
   const name = process.env.DEV_MOCK_NAME
@@ -28,17 +30,16 @@ export function withAccessMiddleware(config: AccessConfig, options: Options = {}
     const pathname = req.nextUrl.pathname
     const res = NextResponse.next()
 
-    console.log('[middleware] 🟡 Incoming request to:', pathname)
+    if (debug) console.log('[middleware] Incoming request:', pathname)
 
     let user: User = await getUserFromRequest(req)
 
     if (process.env.DEV_MOCK_ENABLED === 'true') {
       const mockUser = getMockUserFromEnv()
-      user = mockUser // ✅ middleware ใช้ตรงนี้เลย
+      user = mockUser
 
-      console.log('[middleware] 🧪 Using mock user from .env:', mockUser)
+      if (debug) console.log('[middleware] Using mock user from .env:', mockUser)
 
-      // ✅ inject cookie for client-side (UserProvider)
       if (process.env.DEV_MOCK_TYPE === 'jwt') {
         const token = await new SignJWT(mockUser)
           .setProtectedHeader({ alg: 'HS256' })
@@ -47,20 +48,21 @@ export function withAccessMiddleware(config: AccessConfig, options: Options = {}
           .sign(new TextEncoder().encode(process.env.JWT_SECRET || 'default'))
 
         res.cookies.set('mock-token', token, { httpOnly: false })
-        console.log('[middleware] ✅ Set mock-token (JWT)')
+        if (debug) console.log('[middleware] Set mock-token (JWT)')
       } else {
         res.cookies.set('mock-user', JSON.stringify(mockUser), { httpOnly: false })
-        console.log('[middleware] ✅ Set mock-user (plain cookie)')
+        if (debug) console.log('[middleware] Set mock-user (plain cookie)')
       }
     }
 
-    console.log('[middleware] 👤 Final user:', user)
+    if (debug) console.log('[middleware] Final user:', user)
 
     const allowed = canAccessPath(pathname, user)
-    console.log('[middleware] ✅ Access allowed:', allowed)
+
+    if (debug) console.log('[middleware] Access allowed:', allowed)
 
     if (!allowed) {
-      console.warn('[middleware] ❌ Access denied. Redirecting...')
+      if (debug) console.warn('[middleware] Access denied. Redirecting...')
       return NextResponse.redirect(new URL(options.redirectTo || '/unauthorized', req.url))
     }
 

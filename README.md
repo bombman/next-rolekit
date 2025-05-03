@@ -77,6 +77,7 @@ DEV_MOCK_NAME=Admin User
 DEV_MOCK_ROLE=admin
 DEV_MOCK_PERMISSIONS=create_post,edit_post,delete_post
 JWT_SECRET=supersecret
+DEBUG_MODE=true
 ```
 
 ---
