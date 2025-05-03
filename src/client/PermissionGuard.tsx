@@ -55,7 +55,7 @@ type Props = {
   permission?: string
   children: React.ReactNode
   fallback?: React.ReactNode
-  redirectTo?: string
+  redirectTo?: string | null
 }
 
 export function PermissionGuard({
@@ -63,7 +63,7 @@ export function PermissionGuard({
   permission,
   children,
   fallback = null,
-  redirectTo = '/unauthorized',
+  redirectTo, // ✅ ไม่มี default!
 }: Props) {
   const router = useRouter()
   const { hasRole, hasPermission, user } = usePermission()
@@ -92,8 +92,10 @@ export function PermissionGuard({
   }, [allowed, redirectTo, router, isReady, user.role])
 
   if (!isReady || !checked) return null
-  if (!allowed) return fallback
+  if (!allowed) {
+    if (fallback === 'hide') return null
+    return fallback ?? null
+  }
 
   return <>{children}</>
 }
-

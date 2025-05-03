@@ -27,6 +27,7 @@ export function withAccessMiddleware(config: AccessConfig, options: Options = {}
   injectAccessConfig(config)
 
   return async (req: NextRequest) => {
+    //if (debug)  console.log('REQ',req)
     const pathname = req.nextUrl.pathname
     const res = NextResponse.next()
 
